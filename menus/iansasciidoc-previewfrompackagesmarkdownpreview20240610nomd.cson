@@ -1,0 +1,41 @@
+menu: [
+  label: 'Packages'
+  submenu: [
+    label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd'
+    submenu: [
+      {label: 'Toggle Preview', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:toggle'}
+      {label: 'Toggle Break on Single Newline', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:toggle-break-on-single-newline'}
+      {label: 'Toggle GitHub Style', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:toggle-github-style'}
+      {label: 'openBrowserPopup', command: 'previewfrompackagesmarkdownpreview20240610nomd:open-browser-popup'}
+      {label: 'saveToBackend', command: 'previewfrompackagesmarkdownpreview20240610nomd:save-to-backend'}
+    ]
+  ]
+]
+
+'context-menu':
+  '.iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd': [
+    {label: 'Select All', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:select-all'}
+    {label: 'Save As HTML\u2026', command: 'core:save-as'}
+    {label: 'openBrowserPopup', command: 'previewfrompackagesmarkdownpreview20240610nomd:open-browser-popup'}
+    {label: 'saveToBackend', command: 'previewfrompackagesmarkdownpreview20240610nomd:save-to-backend'}
+  ]
+  '.iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd.has-selection': [
+    {label: 'Copy', command: 'core:copy'}
+  ]
+  '.iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:not(.has-selection)': [
+    {label: 'Copy As HTML', command: 'core:copy'}
+  ]
+  '.tree-view .file .name[data-name$=\\.markdown]':
+    [{label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:preview-file'}]
+  '.tree-view .file .name[data-name$=\\.md]':
+    [{label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:preview-file'}]
+  '.tree-view .file .name[data-name$=\\.mdown]':
+    [{label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:preview-file'}]
+  '.tree-view .file .name[data-name$=\\.mkd]':
+    [{label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:preview-file'}]
+  '.tree-view .file .name[data-name$=\\.mkdown]':
+    [{label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:preview-file'}]
+  '.tree-view .file .name[data-name$=\\.ron]':
+    [{label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:preview-file'}]
+  '.tree-view .file .name[data-name$=\\.txt]':
+    [{label: 'Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd', command: 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:preview-file'}]

@@ -1,0 +1,20 @@
+'atom-text-editor':
+  'ctrl-alt-shift-c': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:toggle'
+  'ctrl-alt-shift-g': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:open-browser-popup'
+  'ctrl-alt-shift-s': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:save-to-backend'
+
+'.platform-darwin .iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd':
+  'cmd-a': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:select-all'
+  'cmd-+': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-in'
+  'cmd-=': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-in'
+  'cmd--': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-out'
+  'cmd-_': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-out'
+  'cmd-0': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:reset-zoom'
+
+'.platform-win32 .iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd, .platform-linux .iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd':
+  'ctrl-a': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:select-all'
+  'ctrl-+': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-in'
+  'ctrl-=': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-in'
+  'ctrl--': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-out'
+  'ctrl-_': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:zoom-out'
+  'ctrl-0': 'iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd:reset-zoom'

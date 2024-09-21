@@ -1,0 +1,16 @@
+{
+  "name": "Test Project",
+  "files": [
+    {
+      "directory": "/",
+      "filters": [
+        "*.js",
+        "*.css",
+        "*.ui",
+        "*.txt",
+        "*.json"
+      ],
+      "recursive": 1
+    }
+  ]
+}
