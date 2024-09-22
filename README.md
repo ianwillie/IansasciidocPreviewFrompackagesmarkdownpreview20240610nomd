@@ -2,7 +2,7 @@
 
 Ians adaption of markdown-preview to preview asciidoc files.
 
-**Be sure to disable** atom-language-asciidoctor which is an atom package. It does some strange things, for example, if it is enabled may package will no longer open files with extensions: .txt, .adoc and possibly others occassionally like .ron.
+~~**Be sure to disable** atom-language-asciidoctor which is an atom package. It does some strange things, for example, if it is enabled may package will no longer open files with extensions: .txt, .adoc and possibly others occasionally like .ron.~~
 Others Atom packages for AsciiDoc should not be enables including: language-asciidoc,: Syntax highlighting and snippets for AsciiDoc & autocomplete-asciidoc. asciidoc-preview: Show an preview for the AsciiDoc has been fixed and should be OK but it is hoped that the current pacakage will replace that and be more resillient to changes in pulsar and its dependencies.
 asciidoc-image-helper: When pasting an image into an Asciidoc document, this package will paste clipboard image data as a file into a folder specified by the user.
 asciidoc-assistant: install Atom AsciiDoc basic packages with one package.
@@ -15,18 +15,36 @@ core:
       "asciidoc"
     ]
 
+Make sure source.asciidoc is included in package.json like this below. The other entries may vary from this.
+"grammars": {
+  "order": 0,
+  "type": "array",
+  "default": [
+    "source.gfm",
+    "source.litcoffee",
+    "text.html.basic",
+    "text.md",
+    "text.plain",
+    "text.plain.null-grammar",
+    "source.asciidoc"
+  ],
+  Any .adoc files to be previewed should show file type as "source.asciidoc". If that is not included under grammars above then adoc syntax highlighting will be absent.
+
 ## What does work
-ctrl-alt-shft-c will preview adoc type file - at the moment these have to be changed to .XXX cos .adoc & .ad files are blocked from somewhere in the original markdown-preview.
-ctrl-alt-shft-g will render the file in external falkon browser.
-ctrl-alt-shft-s will save files as pdf and preview and render this file in pulsar..
-ctrl-shft-s will save as html and show this source file in pulsar. Using node asciidoctor-web-pdf.js. (Also tried to run
-asciidoctor-pdf.rb but this fails wi no output.
+* ctrl-alt-shft-c will preview files as if adoc.  ~~At the moment these have to be changed to .XXX cos .adoc & .ad files are blocked from somewhere in the original markdown-preview.~~
+* ctrl-alt-shft-g will render the file in external falkon browser.
+* ctrl-alt-shft-s will save files as pdf and preview and render this file in pulsar. Using node asciidoctor-web-pdf.js. Note it is quite slow. (Also tried to run asciidoctor-pdf.rb but this fails wi no output.)
+* ctrl-shft-s if cursor is in the preview pane will save as html and show this source file in pulsar. If in adoc source pane it will save file as .adoc. You chang change the output name if you choose.
+
+(The strange key letters are those used in an earlier package incremented. G = Falkon, C = Asciidoc, S for save but wi alt added.)
 
 ## What does not work
-Infront matter :backend:  is unlikely to work cost backends are written in ruby & js versions needed.
+Infront matter :backend:  is unlikely to work cost backends are written in ruby & the js versions are needed in pulsar.
 
+<hr> <hr><hr>
 
-# README.md for original markdown-preview
+# README.md for original markdown-preview   
+# IGNORE  below for reference only
 
 Show the rendered HTML markdown to the right of the current editor using <kbd>ctrl-shift-m</kbd>.
 
