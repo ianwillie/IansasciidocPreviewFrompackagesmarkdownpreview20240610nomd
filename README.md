@@ -8,16 +8,17 @@ To check that it is installed and set up correctly on Linux follow the quickstar
 
 The details of syntax can be found in three documents:
 
-[web address](https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/)
+* [Asciidoctor Quick Reference](https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/)
 
-https://docs.asciidoctor.org/asciidoc/latest/
-https://docs.asciidoctor.org/asciidoctor/latest/
+* [AsciiDoc Language Documentation - About AsciiDoc](https://docs.asciidoctor.org/asciidoc/latest/)
+
+* [Asciidoctor Documentation - What is Asciidoctor](https://docs.asciidoctor.org/asciidoctor/latest/)
 
 
+## Configuration
+<!--- ~~**Be sure to disable** atom-language-asciidoctor which is an atom package. It does some strange things, for example, if it is enabled may package will no longer open files with extensions: .txt, .adoc and possibly others occasionally like .ron.~~ --->
 
-~~**Be sure to disable** atom-language-asciidoctor which is an atom package. It does some strange things, for example, if it is enabled may package will no longer open files with extensions: .txt, .adoc and possibly others occasionally like .ron.~~
-
-Atom packages for AsciiDoc should not be enables including:
+Atom packages for AsciiDoc should not be enables including: (provisional list)
 
 * ```language-asciidoc```,: Syntax highlighting and snippets for AsciiDoc & ```autocomplete-asciidoc```.
 * ```asciidoc-preview```: Show a preview for the AsciiDoc has been fixed and should be OK but it is hoped that the current package will replace that and be more resillient to changes in pulsar and its dependencies.
@@ -51,7 +52,7 @@ Make sure ```source.asciidoc``` is included in package.json like this below. The
   Any .adoc files to be previewed should show file type as ```source.asciidoc```. If that is not included under grammars above then adoc syntax highlighting will be absent.
 
 ## What does work
-* ```ctrl-alt-shft-c``` will preview files as if adoc without regard to file extension.  ~~At the moment these have to be changed to .XXX cos .adoc & .ad files are blocked from somewhere in the original markdown-preview.~~
+* ```ctrl-alt-shft-c``` will preview files as if adoc without regard to file extension.  <!--- ~~At the moment these have to be changed to .XXX cos .adoc & .ad files are blocked from somewhere in the original markdown-preview.~~ --->
 * ```ctrl-alt-shft-g``` will render the file in external falkon browser only if cursor is in adoc source pane (not preview).
 * ```ctrl-alt-shft-s``` will save files as pdf and preview and render this file in pulsar only if cursor is in adoc source pane (not preview). Uses node asciidoctor-web-pdf.js and note that it is quite slow so there will be a delay. (Also tried to use asciidoctor-pdf.rb but this fails wi no output.)
 * ```ctrl-shft-s``` if cursor is in the preview pane will save as html and show this source file in pulsar. However, if there are certain complex links and the like in the adoc file the save to html will fail silently. Which links cause this is not clear at the moment but most adoc files will save properly as html. This file can be opened in pulsar html-preview (ctrl-shift-H) which gives a preview functionally different from adoc-preview.
@@ -145,7 +146,10 @@ file-types []  # Should be removed as it is outdated & customFileTypes used inst
 
 <hr> <hr><hr>
 
-# README.md for original markdown-preview   
+<!---
+
+
+# README.md for original markdown-preview   NB NB COMMENTED OUT with html comment
 # IGNORE  below for reference only
 
 Show the rendered HTML markdown to the right of the current editor using <kbd>ctrl-shift-m</kbd>.
@@ -196,3 +200,4 @@ j: source.js, p: source.python
 ```
 
 Now `iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd` will understand what to do with fenced code blocks that begin with <code>\`\`\`j</code> or <code>\`\`\`p</code>. These custom identifiers will work alongside whatever system you’ve chosen with **Syntax Highlighting Language Identifiers**, but will supersede that system in the event of conflict.
+---.
