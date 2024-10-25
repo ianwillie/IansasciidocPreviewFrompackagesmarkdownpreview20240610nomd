@@ -32,12 +32,6 @@
     "IansasciidocPreviewfrompackagesmarkdownpreview20240610nomdView": "createIansasciidocPreviewfrompackagesmarkdownpreview20240610nomdView"
   },
   "configSchema": {
-    "breakOnSingleNewline": {
-      "type": "boolean",
-      "order": 1,
-      "default": false,
-      "description": "In Markdown, a single newline character doesn't cause a line break in the generated HTML. In GitHub Flavored Markdown, that is not true. Enable this config option to insert line breaks in rendered HTML for single newlines in Markdown source."
-    },
     "liveUpdate": {
       "type": "boolean",
       "order": 2,
@@ -70,34 +64,6 @@
       ],
       "description": "List of scopes for languages for which previewing is enabled. See [this README](https://github.com/pulsar-edit/spell-check#readme) for more information on finding the correct scope for a specific language."
     },
-    "useGitHubStyle": {
-      "order": 5,
-      "title": "Use GitHub.com Style",
-      "type": "boolean",
-      "default": false,
-      "description": "Use the same CSS styles for preview as the ones used on GitHub.com."
-    },
-    "gitHubStyleMode": {
-      "order": 6,
-      "title": "GitHub.com Style Mode",
-      "type": "string",
-      "default": "auto",
-      "description": "Whether to use light-mode GitHub CSS, dark-mode GitHub CSS, or system default (based on your operating system preferences). Has no effect unless **Use GitHub.com Style** is enabled.",
-      "enum": [
-        {
-          "value": "auto",
-          "description": "System Default"
-        },
-        {
-          "value": "light",
-          "description": "Light"
-        },
-        {
-          "value": "dark",
-          "description": "Dark"
-        }
-      ]
-    },
     "syntaxHighlightingLanguageIdentifier": {
       "order": 7,
       "title": "Syntax Highlighting Language Identifiers",
@@ -127,11 +93,6 @@
       "description": "Comma-separated list of syntax language identifiers to map to any language. See [the README](https://github.com/pulsar-edit/pulsar/tree/master/packages/iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd#readme) for usage.",
       "type": "string",
       "default": ""
-    },
-    "useOriginalParser": {
-      "description": "When checked, will use the original Markdown parser for `iansasciidoc-previewfrompackagesmarkdownpreview20240610nomd` (`marked`). When unchecked, will use the new Markdown parser built into Pulsar (`markdown-it`).",
-      "type": "boolean",
-      "default": true
     }
   }
 }

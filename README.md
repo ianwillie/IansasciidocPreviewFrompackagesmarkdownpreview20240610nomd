@@ -2,20 +2,39 @@
 
 Ians adaption of markdown-preview to preview asciidoc files.
 
-~~**Be sure to disable** atom-language-asciidoctor which is an atom package. It does some strange things, for example, if it is enabled may package will no longer open files with extensions: .txt, .adoc and possibly others occasionally like .ron.~~
-Others Atom packages for AsciiDoc should not be enables including: language-asciidoc,: Syntax highlighting and snippets for AsciiDoc & autocomplete-asciidoc. asciidoc-preview: Show an preview for the AsciiDoc has been fixed and should be OK but it is hoped that the current pacakage will replace that and be more resillient to changes in pulsar and its dependencies.
-asciidoc-image-helper: When pasting an image into an Asciidoc document, this package will paste clipboard image data as a file into a folder specified by the user.
-asciidoc-assistant: install Atom AsciiDoc basic packages with one package.
+## What is asciidoctor.js and how to install it
+Asciidoctor.js is supplied by Asciidortor.org and is a transpiled from the native rUBY source code asciidoctor.rb. For practcal purposes it is identical to the original Ruby code and the details can be found at https://github.com/asciidoctor/asciidoctor.js#quickstart. The syntax is similar to Markdown but can be used to write complex documents with detailed features including configuration, tables, diagnrams, code language highlighting and much more.
+To check that it is installed and set up correctly on Linux follow the quickstart in the last link.
 
-Add this to config.cson under core. It ensures that adoc & asciidoc files are treated as text not as YAML type files:
+The details of syntax can be found in three documents:
+
+[web address](https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/)
+
+https://docs.asciidoctor.org/asciidoc/latest/
+https://docs.asciidoctor.org/asciidoctor/latest/
+
+
+
+~~**Be sure to disable** atom-language-asciidoctor which is an atom package. It does some strange things, for example, if it is enabled may package will no longer open files with extensions: .txt, .adoc and possibly others occasionally like .ron.~~
+
+Atom packages for AsciiDoc should not be enables including:
+
+* ```language-asciidoc```,: Syntax highlighting and snippets for AsciiDoc & ```autocomplete-asciidoc```.
+* ```asciidoc-preview```: Show a preview for the AsciiDoc has been fixed and should be OK but it is hoped that the current package will replace that and be more resillient to changes in pulsar and its dependencies.
+* ```asciidoc-image-helper```: When pasting an image into an Asciidoc document, this package will paste clipboard image data as a file into a folder specified by the user.
+* ```asciidoc-assistant```: install Atom AsciiDoc basic packages with one package.
+
+Add this to ```config.cson``` under core. It ensures that adoc & asciidoc files are treated as text not as YAML type files:
+```
 core:
   customFileTypes:
     "text.plain": [
       "adoc"
       "asciidoc"
     ]
-
-Make sure source.asciidoc is included in package.json like this below. The other entries may vary from this.
+```
+Make sure ```source.asciidoc``` is included in package.json like this below. The other entries may vary from this.
+```
 "grammars": {
   "order": 0,
   "type": "array",
@@ -28,18 +47,101 @@ Make sure source.asciidoc is included in package.json like this below. The other
     "text.plain.null-grammar",
     "source.asciidoc"
   ],
-  Any .adoc files to be previewed should show file type as "source.asciidoc". If that is not included under grammars above then adoc syntax highlighting will be absent.
+  ```
+  Any .adoc files to be previewed should show file type as ```source.asciidoc```. If that is not included under grammars above then adoc syntax highlighting will be absent.
 
 ## What does work
-* ctrl-alt-shft-c will preview files as if adoc.  ~~At the moment these have to be changed to .XXX cos .adoc & .ad files are blocked from somewhere in the original markdown-preview.~~
-* ctrl-alt-shft-g will render the file in external falkon browser.
-* ctrl-alt-shft-s will save files as pdf and preview and render this file in pulsar. Using node asciidoctor-web-pdf.js. Note it is quite slow. (Also tried to run asciidoctor-pdf.rb but this fails wi no output.)
-* ctrl-shft-s if cursor is in the preview pane will save as html and show this source file in pulsar. If in adoc source pane it will save file as .adoc. You chang change the output name if you choose.
+* ```ctrl-alt-shft-c``` will preview files as if adoc without regard to file extension.  ~~At the moment these have to be changed to .XXX cos .adoc & .ad files are blocked from somewhere in the original markdown-preview.~~
+* ```ctrl-alt-shft-g``` will render the file in external falkon browser only if cursor is in adoc source pane (not preview).
+* ```ctrl-alt-shft-s``` will save files as pdf and preview and render this file in pulsar only if cursor is in adoc source pane (not preview). Uses node asciidoctor-web-pdf.js and note that it is quite slow so there will be a delay. (Also tried to use asciidoctor-pdf.rb but this fails wi no output.)
+* ```ctrl-shft-s``` if cursor is in the preview pane will save as html and show this source file in pulsar. However, if there are certain complex links and the like in the adoc file the save to html will fail silently. Which links cause this is not clear at the moment but most adoc files will save properly as html. This file can be opened in pulsar html-preview (ctrl-shift-H) which gives a preview functionally different from adoc-preview.
+* ```ctrl-shft-s``` if cursor is in the adoc source pane it will save file as .adoc. You can change the output name if you choose.
 
 (The strange key letters are those used in an earlier package incremented. G = Falkon, C = Asciidoc, S for save but wi alt added.)
 
 ## What does not work
 Infront matter :backend:  is unlikely to work cost backends are written in ruby & the js versions are needed in pulsar.
+
+
+# Notes on config.cson
+
+Usually in ~/.pulsar/.config.cson
+
+This is how mine looks:
+
+```cson
+"*":
+  "asciidoc-preview":
+    baseDir: "-"
+    exportAsPdf:
+      enabled: true
+    frontMatter: true
+    renderOnSaveOnly: true
+  core:
+    closeDeletedFileTabs: true
+    customFileTypes:
+      "source.asciidoc": [
+        "adoc"
+        "asciidoc"
+      ]
+    disabledPackages: [
+      "asciidoc-image-helper"
+      ...
+      "markdown-preview-asciidoctor"
+      "iansasciidoc-preview-frommarkdownpreview"
+      "asciidoc-preview"
+      "iansasciidoc-previewfrompackagesmarkdownpreview20240610withmd"
+      "iansasciidoc-preview-frommarkdownpreviewnomd"
+    ]
+    packagesWithKeymapsDisabled: []
+    reopenProjectMenuCount: 25
+    themes: [
+      "one-dark-ui"
+      "ayu-dark-syntax"
+    ]
+  editor:
+    fontSize: 12
+    ...
+    zoomFontWhenCtrlScrolling: false
+  "exception-reporting":
+    userId: "4adb4778-09bb-403a-b4b8-8e9be2b35df5"
+  "file-types":
+    "*.adoc": "text.plain"
+  fonts:
+    fontFamily: "Anka/Coder"
+  "iansasciidoc-preview-frommarkdownpreview":
+    allowUnsafeProtocols: true
+    grammars: [
+      "source.gfm"
+      "source.litcoffee"
+      "text.html.basic"
+      "text.md"
+      "text.plain"
+      "text.plain.null-grammar"
+      "source.asciidoc"
+    ]
+    isAsciidoctor: true
+    syntaxHighlightingLanguageIdentifier: "highlightjs"
+  "iansasciidoc-preview-frommarkdownpreviewnomd": {}
+  "linter-js-standard-engine":
+    enabledProjects: 3
+  "linter-ui-default":
+    panelHeight: 300
+  "markdown-preview":
+    allowUnsafeProtocols: true
+    isAsciidoctor: true
+    useOriginalParser: false
+  "markdown-preview-asciidoctor":
+    allowUnsafeProtocols: true
+    useAsciidoctor: true
+    useOriginalParser: false
+  welcome:
+    lastViewedChangeLog: "1.114.0"
+    showChangeLog: false
+    showOnStartup: false
+```
+
+file-types []  # Should be removed as it is outdated & customFileTypes used instead.
 
 <hr> <hr><hr>
 
