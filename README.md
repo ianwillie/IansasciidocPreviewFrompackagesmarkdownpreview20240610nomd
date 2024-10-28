@@ -1,12 +1,12 @@
 # Iansasciidoc Previewfrompackagesmarkdownpreview20240610nomd package
 
-Ians adaption of markdown-preview to preview asciidoc files.
+Ian's adaptation of pulsar's excellent package markdown-preview to preview asciidoc files. ```ctrl-alt-shft-c``` will preview as an asciidoc file with live update, ```ctrl-alt-shft-g``` will open in external browser falkon, ```ctrl-alt-shft-s``` save as pdf. See section  [What does work](#what-does-work) for precise details. It is very sensitive to configuration so read below and experiment. [What does work](#works) When the cursor is in the text editor pane ```ctrl-alt-shft-c``` will try to render it as asciidoctor which may or not make sense. For example, a markdown file will be partly rendered as expected.
 
 ## What is asciidoctor.js and how to install it
 Asciidoctor.js is supplied by Asciidortor.org and is a transpiled from the native rUBY source code asciidoctor.rb. For practcal purposes it is identical to the original Ruby code and the details can be found at https://github.com/asciidoctor/asciidoctor.js#quickstart. The syntax is similar to Markdown but can be used to write complex documents with detailed features including configuration, tables, diagnrams, code language highlighting and much more.
 To check that it is installed and set up correctly on Linux follow the quickstart in the last link.
 
-The details of syntax can be found in three documents:
+The details of syntax can be found in these documents on asciidoctor.org:
 
 * [Asciidoctor Quick Reference](https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/)
 
@@ -14,11 +14,20 @@ The details of syntax can be found in three documents:
 
 * [Asciidoctor Documentation - What is Asciidoctor](https://docs.asciidoctor.org/asciidoctor/latest/)
 
+* [Compare AsciiDoc to Markdown - Starting with Markdown Graduating to Asciidoctor](https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown/)
+
+* [Differences between Asciidoctor and AsciiDoc](https://mrduguo.github.io/asciidoctor.org/docs/asciidoc-asciidoctor-diffs/)
+
+* [Asciidoctor.css](https://docs.asciidoctor.org/asciidoctor/latest/html-backend/default-stylesheet/) This package includes asciidoctor.css as the default stylesheet which is embedded in the html files generated for previewing adoc files. The stylesheet embedded or linked can be altered in asciidoctor configuration in the front matter, see the documentation.
+
+
+
 
 ## Configuration
 <!--- ~~**Be sure to disable** atom-language-asciidoctor which is an atom package. It does some strange things, for example, if it is enabled may package will no longer open files with extensions: .txt, .adoc and possibly others occasionally like .ron.~~ --->
 
-Atom packages for AsciiDoc should not be enables including: (provisional list)
+
+```Atom packages for AsciiDoc``` should ```not``` be enabled including: (provisional list). They may stop this package working.
 
 * ```language-asciidoc```,: Syntax highlighting and snippets for AsciiDoc & ```autocomplete-asciidoc```.
 * ```asciidoc-preview```: Show a preview for the AsciiDoc has been fixed and should be OK but it is hoped that the current package will replace that and be more resillient to changes in pulsar and its dependencies.
@@ -34,7 +43,11 @@ core:
       "asciidoc"
     ]
 ```
-Make sure ```source.asciidoc``` is included in package.json like this below. The other entries may vary from this.
+```Settings: Grammars``` -
+Should contain ```source.asciidoc``` or there will be no preview activation. Mine is like this:
+```source.gfm, source.litcoffee, text.html.basic, text.md, text.plain, text.plain.null-grammar, source.asciidoc```
+
+If ```source.asciidoc``` does not appear then make sure ```source.asciidoc``` is included in package.json like this below. The other entries may vary from this.
 ```
 "grammars": {
   "order": 0,
@@ -49,19 +62,20 @@ Make sure ```source.asciidoc``` is included in package.json like this below. The
     "source.asciidoc"
   ],
   ```
-  Any .adoc files to be previewed should show file type as ```source.asciidoc```. If that is not included under grammars above then adoc syntax highlighting will be absent.
+  Any .adoc files to be previewed should show file type as ```source.asciidoc``` at bottom right of screen next to UTF-8 (or other) encoding. If that is not included under grammars above then adoc syntax highlighting will be absent (probably with no preview).
 
+<a name="works"></a>
 ## What does work
-* ```ctrl-alt-shft-c``` will preview files as if adoc without regard to file extension.  <!--- ~~At the moment these have to be changed to .XXX cos .adoc & .ad files are blocked from somewhere in the original markdown-preview.~~ --->
-* ```ctrl-alt-shft-g``` will render the file in external falkon browser only if cursor is in adoc source pane (not preview).
+* ```ctrl-alt-shft-c``` will preview files as if adoc without regard to file extension.  
+* ```ctrl-alt-shft-g``` will render the file in external falkon browser only if cursor is in adoc source pane (not preview). This renderse html file that is the source for the preview in pulsar. From the file manager the adoc file can be rendered directly in a browser like Firefox or Chromium: an add on may be required.
 * ```ctrl-alt-shft-s``` will save files as pdf and preview and render this file in pulsar only if cursor is in adoc source pane (not preview). Uses node asciidoctor-web-pdf.js and note that it is quite slow so there will be a delay. (Also tried to use asciidoctor-pdf.rb but this fails wi no output.)
 * ```ctrl-shft-s``` if cursor is in the preview pane will save as html and show this source file in pulsar. However, if there are certain complex links and the like in the adoc file the save to html will fail silently. Which links cause this is not clear at the moment but most adoc files will save properly as html. This file can be opened in pulsar html-preview (ctrl-shift-H) which gives a preview functionally different from adoc-preview.
 * ```ctrl-shft-s``` if cursor is in the adoc source pane it will save file as .adoc. You can change the output name if you choose.
 
-(The strange key letters are those used in an earlier package incremented. G = Falkon, C = Asciidoc, S for save but wi alt added.)
+(The strange key letters are those used in an earlier package incremented by one or two letters. G = Falkon, C = Asciidoc, S for save but wi alt added.)
 
 ## What does not work
-Infront matter :backend:  is unlikely to work cost backends are written in ruby & the js versions are needed in pulsar.
+Infront matter :backend:  is unlikely to work cost backends are written in ruby & this package uses the js versions as needed in pulsar.
 
 
 # Notes on config.cson
